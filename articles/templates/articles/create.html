@@ -1,0 +1,19 @@
+{% extends 'includes/article_create_update.html' %}
+
+{% block title %}
+<input type="text" name="title" class="form-control" autofocus="on"
+{% if form.title.value %} value="{{ form.title.value }}" {% endif %}
+>
+{% endblock %}
+
+{% block text %}
+<textarea name="text" class="form-control" rows="16" placeholder="本文">{% if form.text.value %}{{ form.text.value }}{% endif %}</textarea>
+{% endblock %}
+
+{% block create_user %}
+<input type="hidden" name="create_user" value="{{ user.id }}">
+{% endblock %}
+
+{% block button_name %}
+投稿する
+{% endblock %}

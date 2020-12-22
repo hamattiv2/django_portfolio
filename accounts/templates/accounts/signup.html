@@ -1,0 +1,37 @@
+{% extends 'includes/base.html' %}
+
+{% block content %}
+<h2 class="h3 card-title text-center mt-2">会員登録</h2>
+<div class="card-text">
+    <form method="POST" action="{% url 'signup' %}">
+        {% csrf_token %}
+
+        <div class="md-form">
+            <label for="username">ユーザー名</label>
+            <input class="form-control" type="text" id="username" name="username" autofocus="on"
+            {% if form.username.value %} value="{{ form.username.value }}" {% endif %}
+            >
+            {% for error in form.username.errors %}
+            <p class="text-danger m-0">{{ error }}</p>
+            {% endfor %}
+        </div>
+
+        <div class="md-form">
+            <label for="password1">パスワード</label>
+            <input class="form-control" type="password" id="password1" name="password1">
+        </div>
+
+        <div class="md-form">
+            <label for="password2">パスワード(確認用)</label>
+            <input class="form-control" type="password" id="password2" name="password2">
+            {% for error in form.password2.errors %}
+            <p class="text-danger m-0">{{ error }}</p>
+            {% endfor %}
+        </div>
+
+        <button class="btn btn-block blue-gradient mt-2 mb-2" type="submit">登録</button>
+
+    </form>
+
+</div>
+{% endblock %}

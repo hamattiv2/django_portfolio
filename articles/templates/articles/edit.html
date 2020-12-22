@@ -1,0 +1,19 @@
+{% extends 'includes/article_create_update.html' %}
+
+{% block title %}
+<input type="text" name="title" class="form-control" autofocus="on"
+value="{{ article.title }}" 
+>
+{% endblock %}
+
+{% block text %}
+<textarea name="text" class="form-control" rows="16" placeholder="本文">{{ article.text }}</textarea>
+{% endblock %}
+
+{% block create_user %}
+<input type="hidden" name="create_user" value="{{ article.create_user.id}}">
+{% endblock %}
+
+{% block button_name %}
+更新
+{% endblock %}

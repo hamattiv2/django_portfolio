@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ポートフォリオ</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand navbar-dark blue-gradient">
+            <a class="navbar-brand" href="/"><i class="far fa-sticky-note mr-1"></i>ポートフォリオ</a>
+            <ul class="navbar-nav ml-auto">
+                
+                {% if not user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="">ユーザー登録</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">ログイン</a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'create' %}"><i class="fas fa-pen mr-1"></i>投稿する</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user-circle"></i>
+                        {% if user.is_authenticated%}
+                        {{ user.username }}
+                        {% else %}
+                        未ログイン
+                        {% endif%}
+                    </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <button class="dropdown-item" type="button" onclick="location.href=''">マイページ</button>
+                    {% if user.is_authenticated %}
+                    <div class="dropdown-divider"></div>
+                        <button form="logout-button" class="dropdown-item" type="submit">
+                            <a href="{% url 'logout' %}" class="p-0">ログアウト</a>
+                        </button>
+                    </div>
+                    {% endif %}
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if messages %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="messages mt-3">
+                {% for message in messages %}
+                <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="container">
+    <div class="row">
+        {% for article in articles %}
+        <div class="card mt-3 w-100">
+            <div class="card-body d-flex flex-row">
+                <i class="fas fa-user-circle fa-3x mr-1"></i>
+                <div>
+                    <div class="font-weight-bold">
+                        {{ article.create_user }}
+                    </div>
+                    <div class="font-weight-lighter">
+                        {{ article.insert_time|date:"Y/m/d f" }}
+                    </div>
+                </div>
+            </div>
+            <div class="card-body pt-0 pb-2">
+                <a class="h4 card-title" href="{% url 'detail' article.id %}">{{ article.title }}</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="mt-2">
+            <div class="pagination">
+                {% include 'includes/paging.html' %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

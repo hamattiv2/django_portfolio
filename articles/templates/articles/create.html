@@ -10,6 +10,13 @@
 <textarea name="text" class="form-control" rows="16" placeholder="本文">{% if form.text.value %}{{ form.text.value }}{% endif %}</textarea>
 {% endblock %}
 
+{% block plan_document %}
+{{ form.plan_document}}
+{% for error in form.plan_document.errors %}
+<p class="text-danger">{{ error }}</p>
+{% endfor %}
+{% endblock %}
+
 {% block create_user %}
 <input type="hidden" name="create_user" value="{{ user.id }}">
 {% endblock %}

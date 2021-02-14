@@ -8,7 +8,7 @@
             <div class="card mt-3">
                 <div class="card-body pt-0">
                     <div class="card-text">
-                        <form method="POST">
+                        <form method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="md-form">
                                 <label>タイトル</label>
@@ -27,6 +27,11 @@
                             {% for error in form.text.errors %}
                             <p class="text-danger">{{ error }}</p>
                             {% endfor %}
+
+                            <div class="form-group">
+                                {% block plan_document %}
+                                {% endblock %}
+                            </div>
 
                             {% block create_user %}
                             {% endblock %}
